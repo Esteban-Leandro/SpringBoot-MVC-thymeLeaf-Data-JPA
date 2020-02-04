@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+
+	<div class="container py-4">
+		<div class="card ">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4>
+					<a th:href="@{/form-cuenta}" class="btn btn-success btn-xs">
+						Crear Cuenta </a>
+				</h4>
+
+				<table class="table table-striped text-center">
+					<thead class="thead-inverse">
+						<tr class="bg bg-dark text-white ">
+							<td>ID</td>
+							<td>Lectura anterior</td>
+							<td>Lectura actual</td>
+							<td>Metros cubicos usados</td>
+							<td>Valor del metro cubico</td>
+							<td>Total</td>
+							<td>Estado</td>
+							<td>Fecha</td>
+							<td>Editar</td>
+							<td>Eliminar</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cuenta: ${cuentas}">
+							<td th:text="${cuenta.id}"></td>
+							<td th:text="${cuenta.nuevaLectura - 20}">-</td>
+							<td th:text="${cuenta.nuevaLectura}"></td>
+							<td th:text="${cuenta.nuevaLectura - 40}"></td>
+							<td th:text="748"></td>
+							<td th:text="(${cuenta.nuevaLectura} - 40)*748"></td>
+							<td th:text="${cuenta.estadoCuenta}"></td>
+							<td th:text="${cuenta.fechaLectura}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/form-cuenta/} + ${cuenta.id}" th:text="Editar"></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/eliminar-cuenta/} + ${cuenta.id}" th:text="Eliminar"
+								onClick="return confirm('¿Estás seguro que desesas eliminar?')"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

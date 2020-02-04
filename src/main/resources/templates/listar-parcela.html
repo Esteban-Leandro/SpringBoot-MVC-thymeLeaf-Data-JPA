@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+
+	<div class="container py-4">
+		<div class="card ">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4>
+					<a th:href="@{/form-parcela}" class="btn btn-success btn-xs">
+						Crear Parcela </a>
+				</h4>
+
+				<table class="table table-striped text-center">
+					<thead class="thead-inverse">
+						<tr class="bg bg-dark text-white ">
+							<td>ID</td>
+							<td>Nº de Parcela</td>
+							<td>Nombre de la Parcela</td>
+							<td>Dirección</td>
+							<td>Estado</td>
+							<td>Fecha</td>
+							<td>Editar</td>
+							<td>Eliminar</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="parcela: ${parcelas}">
+							<td th:text="${parcela.id}"></td>
+							<td th:text="${parcela.numeroParcela}"></td>
+							<td th:text="${parcela.nombreParcela}"></td>
+							<td th:text="${parcela.direccionParcela}"></td>
+							<td th:text="${parcela.estado}"></td>
+							<td th:text="${parcela.createAt}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/form-parcela/} + ${parcela.id}" th:text="Editar"></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/eliminar-parcela/} + ${parcela.id}"
+								th:text="Eliminar"
+								onClick="return confirm('¿Estás seguro que desesas eliminar?')"></a></td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

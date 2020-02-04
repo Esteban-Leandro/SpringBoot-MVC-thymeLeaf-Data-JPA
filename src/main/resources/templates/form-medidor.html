@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+
+	<div class="container">
+		<h1
+			class="text-secondary border border-secondary border-top-0 border-left-0 border-right-0"
+			th:text="${titulo}"></h1>
+
+		<form th:action="@{/form-medidor}" th:object="${medidor}" method="post">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="lecturaMedidor">Lectura del medidor</label>
+				<div class="col-sm-6 ">
+					<input type="text" class="form-control" id="lecturaMedidor"
+						th:field="*{lecturaMedidor}" th:errorclass="'form-control alert-danger'">
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('lecturaMedidor')}" th:errors="*{lecturaMedidor}"></small>
+				</div>
+			</div>
+	
+			<div class="form-group row">
+				<div class="col-sm-6 ">
+					<button type="submit" class="btn btn-primary">Crear
+						Medidor</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

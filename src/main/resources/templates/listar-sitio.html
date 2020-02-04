@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card ">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4>
+					<a th:href="@{/form-sitio}" class="btn btn-success btn-xs"> Crear
+						Sitio </a>
+				</h4>
+				<table class="table table-striped text-center">
+					<thead class="thead-inverse">
+						<tr class="bg bg-dark text-white ">
+							<td>ID</td>
+							<td>Nº de Sitio</td>
+							<td>Estado</td>
+							<td>Fecha</td>
+							<td>Editar</td>
+							<td>Eliminar</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="sitio: ${sitios}">
+							<td th:text="${sitio.id}"></td>
+							<td th:text="${sitio.numeroSitio}"></td>
+							<td th:text="${sitio.estado}"></td>
+							<td th:text="${sitio.createAt}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/form-sitio/} + ${sitio.id}" th:text="Editar"></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/eliminar-sitio/} + ${sitio.id}" th:text="Eliminar"
+								onClick="return confirm('¿Estás seguro que desesas eliminar?')"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
